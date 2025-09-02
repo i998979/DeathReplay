@@ -1,4 +1,4 @@
-package to.epac.factorycraft.deathReplay;
+package to.epac.factorycraft.deathreplay;
 
 import me.jumper251.replay.api.ReplayAPI;
 import org.bukkit.entity.Player;
@@ -15,5 +15,10 @@ public class DeathHandler implements Listener {
         if (!DeathReplay.replays.containsKey(player.getUniqueId())) return;
 
         ReplayAPI.getInstance().stopReplay(player.getUniqueId() + "", true);
+
+        // If player dies in disabled world, remove replay instantly as we don't need to replay it
+        if (DeathReplay.disabledWorlds.contains(player.getWorld().getName())) {
+            DeathReplay.replays.remove(player.getUniqueId());
+        }
     }
 }

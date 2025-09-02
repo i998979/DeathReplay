@@ -1,4 +1,4 @@
-package to.epac.factorycraft.deathReplay;
+package to.epac.factorycraft.deathreplay;
 
 import me.jumper251.replay.api.ReplayAPI;
 import me.jumper251.replay.replaysystem.Replay;
@@ -16,7 +16,12 @@ public class RespawnHandler implements Listener {
         Player player = event.getPlayer();
         Player watcher = event.getPlayer();
 
-        if (!DeathReplay.replays.containsKey(player.getUniqueId())) return;
+        if (!DeathReplay.replays.containsKey(player.getUniqueId())) {
+            Replay replay = ReplayAPI.getInstance().recordReplay(player.getUniqueId() + "", player);
+            DeathReplay.replays.put(player.getUniqueId(), replay);
+
+            return;
+        }
 
         Replay replay = DeathReplay.replays.get(player.getUniqueId());
         int duration = replay.getReplayInfo().getDuration();
@@ -25,9 +30,9 @@ public class RespawnHandler implements Listener {
 
         Bukkit.getScheduler().runTaskLaterAsynchronously(DeathReplay.getInst(), () -> {
             do {
-                Bukkit.getScheduler().runTask(DeathReplay.getInst(), () -> {
+                Bukkit.getScheduler().runTaskLater(DeathReplay.getInst(), () -> {
                     ReplayAPI.getInstance().jumpToReplayTime(player, (int) (duration / 20.0 - 5));
-                });
+                }, 1);
             } while (!ReplayHelper.replaySessions.containsKey(watcher.getName()));
         }, 1);
     }

@@ -1,4 +1,4 @@
-package to.epac.factorycraft.deathReplay;
+package to.epac.factorycraft.deathreplay;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

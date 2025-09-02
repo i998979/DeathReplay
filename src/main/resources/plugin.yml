@@ -1,4 +1,4 @@
 name: DeathReplay
 version: '1.0.0-SNAPSHOT'
-main: to.epac.factorycraft.deathReplay.DeathReplay
+main: to.epac.factorycraft.deathreplay.DeathReplay
 api-version: '1.21'
