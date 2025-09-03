@@ -25,6 +25,7 @@ public final class DeathReplay extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        Metrics metrics = new Metrics(this, 27156);
         inst = this;
 
         PluginManager pm = Bukkit.getPluginManager();
