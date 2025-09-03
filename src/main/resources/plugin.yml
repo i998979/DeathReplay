@@ -1,4 +1,11 @@
 name: DeathReplay
 version: '1.0.0-SNAPSHOT'
 main: to.epac.factorycraft.deathreplay.DeathReplay
-api-version: '1.21'
+author: i998979
+depend: [ AdvancedReplay ]
+api-version: 1.13
+
+commands:
+  deathreplay:
+    description: DeathReplay base command
+    aliases: [ dr ]

@@ -17,7 +17,7 @@ public class PlayerHandler implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        Replay replay = ReplayAPI.getInstance().recordReplay(player.getUniqueId() + "", player);
+        Replay replay = ReplayAPI.getInstance().recordReplay(player.getUniqueId().toString(), player);
         DeathReplay.replays.put(player.getUniqueId(), replay);
     }
 
@@ -25,7 +25,7 @@ public class PlayerHandler implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
 
-        ReplayAPI.getInstance().stopReplay(player.getUniqueId() + "", false);
+        ReplayAPI.getInstance().stopReplay(player.getUniqueId().toString(), false);
         DeathReplay.replays.remove(player.getUniqueId());
     }
 
@@ -43,9 +43,9 @@ public class PlayerHandler implements Listener {
 
         // If world change, restart recording
         if (DeathReplay.replays.containsKey(player.getUniqueId())) {
-            ReplayAPI.getInstance().stopReplay(player.getUniqueId() + "", false);
+            ReplayAPI.getInstance().stopReplay(player.getUniqueId().toString(), false);
 
-            Replay replay = ReplayAPI.getInstance().recordReplay(player.getUniqueId() + "", player);
+            Replay replay = ReplayAPI.getInstance().recordReplay(player.getUniqueId().toString(), player);
             DeathReplay.replays.put(player.getUniqueId(), replay);
         }
     }

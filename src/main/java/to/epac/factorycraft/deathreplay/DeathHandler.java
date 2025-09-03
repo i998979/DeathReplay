@@ -14,7 +14,7 @@ public class DeathHandler implements Listener {
 
         if (!DeathReplay.replays.containsKey(player.getUniqueId())) return;
 
-        ReplayAPI.getInstance().stopReplay(player.getUniqueId() + "", true);
+        ReplayAPI.getInstance().stopReplay(player.getUniqueId().toString(), true);
 
         // If player dies in disabled world, remove replay instantly as we don't need to replay it
         if (DeathReplay.disabledWorlds.contains(player.getWorld().getName())) {

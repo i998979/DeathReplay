@@ -14,8 +14,11 @@ public class ReplaySessionFinishHandler implements Listener {
         Player player = event.getPlayer();
         Replay oldReplay = event.getReplay();
 
-        // TODO: Fixed 5s replay, no early end
-        Replay replay = ReplayAPI.getInstance().recordReplay(player.getUniqueId() + "", player);
+        DeathReplay.spectatorRunnables.computeIfPresent(player.getUniqueId(), (uuid, bukkitRunnable) -> {
+            bukkitRunnable.cancel();
+            return bukkitRunnable;
+        });
+        Replay replay = ReplayAPI.getInstance().recordReplay(player.getUniqueId().toString(), player);
         DeathReplay.replays.put(player.getUniqueId(), replay);
     }
 }

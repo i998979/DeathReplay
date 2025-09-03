@@ -1,3 +1,4 @@
 DeathReplay:
   DisabledWorlds:
     - world
+  Duration: 5
